@@ -8,7 +8,7 @@ public class TextBoxTests
 {
     private MainPage _mainPage;
 
-    [SetUp]
+    [OneTimeSetUp]
     public void SetUp()
     {
         _mainPage = new MainPage();
@@ -29,7 +29,7 @@ public class TextBoxTests
         });
     }
     
-    [TearDown]
+    [OneTimeTearDown]
     public void TearDown()
     {
         _mainPage.Close();
