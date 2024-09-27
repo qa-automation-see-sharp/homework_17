@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using Test.Utils.Swd.WebDriver;
 using Test.Utils.Swd.WebElements;
 using WebElement = Test.Utils.Swd.WebElements.WebElement;
@@ -17,7 +18,15 @@ public class MainPage : BasePage
         Elements.Click();
         return new ElementsPage(Driver!);
     }
-
+    
+    public ElementsPage OpenElementsPage()
+    {
+        Actions actions = new Actions(Driver);
+        actions.SendKeys(Keys.PageDown).Perform();
+        Elements.Click();
+        return new(Driver!);
+    }
+    
     public void Close()
     {
         Driver?.Quit();

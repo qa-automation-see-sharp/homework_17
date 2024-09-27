@@ -8,7 +8,7 @@ public static class WaitHelper
     private static readonly TimeSpan Timeout = TimeSpan.FromMilliseconds(5000);
 
     public static T Wait<T>(Func<T> func, Func<T, bool> condition)
-    {
+    { 
         return Wait(func, condition, 10, Timeout);
     }
 
