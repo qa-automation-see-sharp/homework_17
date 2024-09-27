@@ -8,14 +8,12 @@ namespace Tests.NUnit.Ui.Tests;
 public class TextBoxTests
 {
     private MainPage _mainPage;
-    private CheckBoxPage _checkBoxPage;
 
     [OneTimeSetUp]
     public void SetUp()
     {
         _mainPage = new MainPage();
         _mainPage.OpenWith(Chrome, "--start-maximized");
-        _checkBoxPage = new CheckBoxPage();
     }
 
     [Test]
@@ -25,9 +23,10 @@ public class TextBoxTests
         var title = _mainPage.GetPageTitle();
         
         var elementsPage = _mainPage.OpenElementsPage();
-        elementsPage.OpenCheckBoxPage();
-        _checkBoxPage.ExpandMenu();
-        var IsExpandButtonEnabled = _checkBoxPage.CheckExpandButton();
+        var checkBoxPage = elementsPage.OpenCheckBoxPage();
+        
+        var IsExpandButtonEnabled = checkBoxPage.CheckExpandButton();
+        checkBoxPage.ExpandMenu();
         
         Assert.Multiple(() =>
         {
