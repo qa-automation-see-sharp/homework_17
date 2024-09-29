@@ -25,7 +25,7 @@ public class WebElement
         _by = by;
     }
 
-    private IWebElement FindElement()
+    protected IWebElement FindElement()
     {
         _element = Wait(
             () => _driver.FindElement(_by),
