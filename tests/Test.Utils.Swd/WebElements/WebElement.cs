@@ -9,6 +9,7 @@ public class WebElement
     private readonly IWebDriver _driver;
     private readonly By _by;
     private IWebElement _element;
+    private List<IWebElement> _elements;
 
     public string TagName => FindElement().TagName;
     public string Text => FindElement().Text;
@@ -25,12 +26,20 @@ public class WebElement
         _by = by;
     }
 
-    private IWebElement FindElement()
+    public IWebElement FindElement()
     {
         _element = Wait(
             () => _driver.FindElement(_by),
             element => element is null or { Displayed: false } or { Enabled: false });
         return _element;
+    }
+
+    private IEnumerable<IWebElement> FindElements()
+    {
+        _elements = Wait(
+            () => _driver.FindElements(_by).ToList(), 
+            elements => elements.Count == 0);
+        return _elements;
     }
 
     public void Clear()
@@ -86,5 +95,15 @@ public class WebElement
         return Wait(
             () => FindElement().GetShadowRoot(),
             root => root is not null);
+    }
+
+    public IWebElement GetElement(int index)
+    {
+        return FindElements().ElementAt(index);
+    }
+
+    public IWebElement? FirstOrDefault(Func<IWebElement,bool> condition)
+    {
+        return FindElements().FirstOrDefault(condition);
     }
 }

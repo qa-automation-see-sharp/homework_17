@@ -4,7 +4,7 @@ using WebElement = Test.Utils.Swd.WebElements.WebElement;
 
 namespace Test.Utils.Swd.PageObjects;
 
-public class CheckBoxPage:BasePage
+public class CheckBoxPage : BasePage
 {
     
     private WebElement CheckBoxPageTitle
