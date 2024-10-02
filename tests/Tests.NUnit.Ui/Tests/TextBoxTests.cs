@@ -41,7 +41,7 @@ public class TextBoxTests
         });
     }
     
-    [TearDown]
+    [OneTimeTearDown]
     public void TearDown()
     {
         _mainPage.Close();

@@ -13,7 +13,7 @@ public class MainPage : BasePage
 
     private WebElement Elements
         => new(By.XPath("//div[@class=\"card mt-4 top-card\"]/div/div/h5[contains(text(),\"Elements\")]"), Driver!);
-
+    
     public ElementsPage ClickOnElements()
     {
         Elements.Click();

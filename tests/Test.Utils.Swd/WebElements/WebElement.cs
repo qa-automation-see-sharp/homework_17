@@ -28,17 +28,33 @@ public class WebElement
 
     public IWebElement FindElement()
     {
-        _element = Wait(
-            () => _driver.FindElement(_by),
-            element => element is null or { Displayed: false } or { Enabled: false });
+        try
+        {
+            _element = Wait(
+                () => _driver.FindElement(_by),
+                element => element is null or { Displayed: false } or { Enabled: false });
+        }
+        catch
+        {
+            _element = null;
+        }
+
         return _element;
     }
 
     private IEnumerable<IWebElement> FindElements()
     {
-        _elements = Wait(
-            () => _driver.FindElements(_by).ToList(), 
-            elements => elements.Count == 0);
+        try
+        {
+            _elements = Wait(
+                () => _driver.FindElements(_by).ToList(),
+                elements => elements.Count == 0);
+        }
+        catch
+        {
+            _elements = null;
+        }
+
         return _elements;
     }
 
@@ -54,7 +70,7 @@ public class WebElement
 
     public void Submit()
     {
-        Wait(()=> FindElement().Submit());
+        Wait(() => FindElement().Submit());
     }
 
     public void Click()
@@ -72,14 +88,14 @@ public class WebElement
     public string GetDomAttribute(string attributeName)
     {
         return Wait(
-            () => FindElement().GetDomAttribute(attributeName), 
+            () => FindElement().GetDomAttribute(attributeName),
             attr => attr is not null);
     }
 
     public string GetDomProperty(string propertyName)
     {
         return Wait(
-            () => FindElement().GetDomProperty(propertyName), 
+            () => FindElement().GetDomProperty(propertyName),
             prop => prop is not null);
     }
 
@@ -102,7 +118,7 @@ public class WebElement
         return FindElements().ElementAt(index);
     }
 
-    public IWebElement? FirstOrDefault(Func<IWebElement,bool> condition)
+    public IWebElement? FirstOrDefault(Func<IWebElement, bool> condition)
     {
         return FindElements().FirstOrDefault(condition);
     }
