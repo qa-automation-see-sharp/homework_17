@@ -24,7 +24,6 @@ public class WebElement
     {
         _driver = driver;
         _by = by;
-        //_element = _driver.FindElement(_by);
     }
 
     public IWebElement FindElement()
