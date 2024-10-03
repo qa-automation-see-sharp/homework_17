@@ -20,6 +20,6 @@ public class ElementsPage : BasePage
     public CheckBoxPage OpenCheckBoxPage()
     {
         CheckBox.Click();
-        return new CheckBoxPage();
+        return new CheckBoxPage(Driver!);
     }
 }

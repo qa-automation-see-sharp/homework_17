@@ -14,6 +14,10 @@ public class CheckBoxPage : BasePage
     private WebElement CollapseButton
         => new(By.CssSelector("button[title='Collapse all']"), Driver!);
 
+    public CheckBoxPage(IWebDriver driver)
+    {
+        Driver = driver;
+    }
     public bool CheckCheckBoxPageTitle()
     {
         var element = CheckBoxPageTitle;
