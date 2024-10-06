@@ -17,12 +17,15 @@ public class CheckBoxPage : BasePage
         => new(By.XPath("//div[@id='tree-node']/ol/li/span/label/span[@class='rct-checkbox']"), Driver!);
     private CheckBox HomeCheckBoxMarked
         => new(By.CssSelector("[for='tree-node-home'] .rct-icon-check"), Driver!);
+
+    private WebElement HomeFolderIconInACollapsedMenu 
+        => new(By.CssSelector(".rct-icon.rct-icon-parent-close > path"), Driver!);
     private CheckBox DesktopCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
     private CheckBox CommandsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
     private CheckBox ReactCheckBox
-        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/ol/li[1]/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
+        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/ol/li[1]/ol/li[1]/span[@class='rct-text']"), Driver!);
     private CheckBox DocumentsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
     private CheckBox DocumentsCheckBoxMarked
@@ -71,16 +74,16 @@ public class CheckBoxPage : BasePage
         return element.Displayed && element.Enabled;
     }
     
-    public bool CheckCollapsedMenuByReactCheckBox()
+    public bool CheckCollapsedMenuByTheHomeFolderIcon()
     {
-        var element = ReactCheckBox;
+        var element = HomeFolderIconInACollapsedMenu ;
         return element.Displayed;
     }
 
     public void MarkHomeCheckbox()
     {
         HomeCheckBox.Mark();
-        Thread.Sleep(5000);
+        Thread.Sleep(3000);
     }
 
     public bool CheckTheDescriptionOfSelectedItems()
@@ -98,13 +101,13 @@ public class CheckBoxPage : BasePage
     public bool VerifyTheHomeCheckBoxIsMarked()
     {
         var element = HomeCheckBoxMarked;
-        return element.Marked;
+        return element.Displayed;
     }
     
     public bool VerifyTheDocumentsCheckBoxIsMarked()
     {
         var element = DocumentsCheckBoxMarked;
-        return element.Marked;
+        return element.Displayed;
     }
     
     public void UnMarkHomeCheckbox()

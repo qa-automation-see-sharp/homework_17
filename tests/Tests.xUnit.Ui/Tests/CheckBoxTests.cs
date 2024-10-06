@@ -34,7 +34,7 @@ public class TextBoxTests : IDisposable
         
         var IsCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
-        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByReactCheckBox();
+        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
         
         Assert.Equal("DEMOQA", title);
         Assert.True(checkBoxPageTitle);

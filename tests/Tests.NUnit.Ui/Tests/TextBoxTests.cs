@@ -31,7 +31,7 @@ public class TextBoxTests
         var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
         
         checkBoxPage.MarkHomeCheckbox();
-        var isHomeCheckBoxMarked = checkBoxPage.VerifyTheHomeCheckBoxIsMarked;
+        var isHomeCheckBoxMarked = checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
         var isDocumentsCheckBoxMarked = checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
         var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
         var isTheTextOfTheDescriptionDisplayed = checkBoxPage.CheckTheTextOfTheDescription();
@@ -40,7 +40,7 @@ public class TextBoxTests
         
         var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
-     //   var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByReactCheckBox();
+        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
         
         
         Assert.Multiple(() =>
@@ -54,9 +54,7 @@ public class TextBoxTests
             Assert.That(isDocumentsCheckBoxMarked, Is.True);
             Assert.That(isTheDescriptionOfSelectedItemsIsPresent, Is.True);
             Assert.That(isTheTextOfTheDescriptionDisplayed, Is.True);
-            
-            
-         //   Assert.That(isCollapsedMenuDisplayed, Is.False);
+            Assert.That(isCollapsedMenuDisplayed, Is.True);
             
         });
     }
