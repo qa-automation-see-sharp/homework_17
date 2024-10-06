@@ -19,6 +19,8 @@ public class CheckBoxPage : BasePage
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
     private WebElement CommandsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
+    private WebElement ReactCheckBox
+        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/ol/li[1]/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
     private WebElement DocumentsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
     private WebElement DownloadsCheckBox
@@ -64,9 +66,9 @@ public class CheckBoxPage : BasePage
         return element.Displayed && element.Enabled;
     }
     
-    public bool CheckCollapsedMenuByCommandsCheckBox()
+    public bool CheckCollapsedMenuByReactCheckBox()
     {
-        var element = CommandsCheckBox;
-        return element.Displayed!;
+        var element = ReactCheckBox;
+        return element.Displayed;
     }
 }

@@ -32,7 +32,7 @@ public class TextBoxTests
         
         var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
-        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByCommandsCheckBox();
+        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByReactCheckBox();
         
         Assert.Multiple(() =>
         {
@@ -41,7 +41,7 @@ public class TextBoxTests
             Assert.That(isExpandButtonEnabled, Is.True);
             Assert.That(isCollapseButtonEnabled, Is.True);
             Assert.That(isExpandedMenuDisplayed, Is.True);
-            Assert.That(isCollapsedMenuDisplayed, Is.True);
+            Assert.That(isCollapsedMenuDisplayed, Is.False);
         });
     }
     
