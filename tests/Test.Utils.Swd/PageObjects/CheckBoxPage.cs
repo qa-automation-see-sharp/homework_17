@@ -13,6 +13,16 @@ public class CheckBoxPage : BasePage
         => new(By.CssSelector("button[title='Expand all']"), Driver!);
     private WebElement CollapseButton
         => new(By.CssSelector("button[title='Collapse all']"), Driver!);
+    private WebElement HomeCheckBox
+        => new(By.XPath("//div[@id='tree-node']/ol/li/span/label/span[@class='rct-checkbox']"), Driver!);
+    private WebElement DesktopCheckBox
+        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
+    private WebElement CommandsCheckBox
+        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
+    private WebElement DocumentsCheckBox
+        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
+    private WebElement DownloadsCheckBox
+        => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[3]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
 
     public CheckBoxPage(IWebDriver driver)
     {
@@ -26,6 +36,7 @@ public class CheckBoxPage : BasePage
     public CheckBoxPage ExpandMenu()
     {
         ExpandButton.Click();
+        Thread.Sleep(5000);
         return this;
     }
     
@@ -39,6 +50,12 @@ public class CheckBoxPage : BasePage
     {
         var element = ExpandButton;
         return element.Displayed && element.Enabled;
+    }
+
+    public bool CheckExpandedMenuByCommandsCheckBox()
+    {
+        var element = CommandsCheckBox;
+        return element.Displayed;
     }
     
     public bool CheckCollapseButton()

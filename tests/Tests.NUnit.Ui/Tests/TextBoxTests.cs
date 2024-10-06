@@ -26,18 +26,20 @@ public class TextBoxTests
         var checkBoxPage = elementsPage.OpenCheckBoxPage();
         var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
         
-        var IsExpandButtonEnabled = checkBoxPage.CheckExpandButton();
+        var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
+        var isExpandedManuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
         
-        var IsCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
+        var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
         
         Assert.Multiple(() =>
         {
             Assert.That(title, Is.EqualTo("DEMOQA"));
             Assert.That(checkBoxPageTitle, Is.True);
-            Assert.That(IsExpandButtonEnabled, Is.True);
-            Assert.That(IsCollapseButtonEnabled, Is.True);
+            Assert.That(isExpandButtonEnabled, Is.True);
+            Assert.That(isCollapseButtonEnabled, Is.True);
+            Assert.That(isExpandedManuDisplayed, Is.True);
         });
     }
     

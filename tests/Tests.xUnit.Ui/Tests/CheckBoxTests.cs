@@ -8,8 +8,6 @@ namespace Tests.XUnit.Ui.Tests;
 public class TextBoxTests : IDisposable
 {
     private MainPage _mainPage;
-
-    // Constructor acts as OneTimeSetUp in xUnit
     public TextBoxTests()
     {
         _mainPage = new MainPage();
@@ -37,8 +35,6 @@ public class TextBoxTests : IDisposable
         Assert.True(IsExpandButtonEnabled);
         Assert.True(IsCollapseButtonEnabled);
     }
-
-    // Dispose acts as OneTimeTearDown in xUnit
     public void Dispose()
     {
         _mainPage.Close();
