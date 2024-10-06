@@ -26,14 +26,23 @@ public class TextBoxTests : IDisposable
         
         var IsExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
+        var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
+
+        checkBoxPage.MarkHomeCheckbox();
+        var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
+
         
         var IsCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
+        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByReactCheckBox();
         
         Assert.Equal("DEMOQA", title);
         Assert.True(checkBoxPageTitle);
         Assert.True(IsExpandButtonEnabled);
         Assert.True(IsCollapseButtonEnabled);
+        Assert.True(isExpandedMenuDisplayed);
+        Assert.False(isCollapsedMenuDisplayed);
+        Assert.True(isTheDescriptionOfSelectedItemsIsPresent);
     }
     public void Dispose()
     {
