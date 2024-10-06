@@ -13,18 +13,21 @@ public class CheckBoxPage : BasePage
         => new(By.CssSelector("button[title='Expand all']"), Driver!);
     private WebElement CollapseButton
         => new(By.CssSelector("button[title='Collapse all']"), Driver!);
-    private WebElement HomeCheckBox
+    private CheckBox HomeCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/span/label/span[@class='rct-checkbox']"), Driver!);
-    private WebElement DesktopCheckBox
+    private CheckBox DesktopCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
-    private WebElement CommandsCheckBox
+    private CheckBox CommandsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[1]/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
-    private WebElement ReactCheckBox
+    private CheckBox ReactCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/ol/li[1]/ol/li[1]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
-    private WebElement DocumentsCheckBox
+    private CheckBox DocumentsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[2]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
-    private WebElement DownloadsCheckBox
+    private CheckBox DownloadsCheckBox
         => new(By.XPath("//div[@id='tree-node']/ol/li/ol/li[3]/span[@class='rct-text']/label/span[@class='rct-checkbox']"), Driver!);
+
+    private WebElement DescriptionOfSelectedItems 
+        => new(By.XPath("//div[@id='result']/span[.='You have selected :']"), Driver!);
 
     public CheckBoxPage(IWebDriver driver)
     {
@@ -35,17 +38,15 @@ public class CheckBoxPage : BasePage
         var element = CheckBoxPageTitle;
         return element.Displayed;
     }
-    public CheckBoxPage ExpandMenu()
+    public void ExpandMenu()
     {
         ExpandButton.Click();
-        Thread.Sleep(5000);
-        return this;
+        Thread.Sleep(2000);
     }
     
-    public CheckBoxPage CollapseMenu()
+    public void CollapseMenu()
     {
         CollapseButton.Click();
-        return this;
     }
 
     public bool CheckExpandButton()
@@ -71,4 +72,17 @@ public class CheckBoxPage : BasePage
         var element = ReactCheckBox;
         return element.Displayed;
     }
+
+    public void MarkHomeCheckbox()
+    {
+        HomeCheckBox.Mark();
+        Thread.Sleep(5000);
+    }
+
+    public bool CheckTheDescriptionOfSelectedItems()
+    {
+        var element = DescriptionOfSelectedItems;
+        return element.Displayed && Equals("You have selected :");
+    }
+    
 }

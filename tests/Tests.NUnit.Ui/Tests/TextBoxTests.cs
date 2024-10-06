@@ -30,9 +30,13 @@ public class TextBoxTests
         checkBoxPage.ExpandMenu();
         var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
         
+        checkBoxPage.MarkHomeCheckbox();
+        var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
+        
         var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
         var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByReactCheckBox();
+        
         
         Assert.Multiple(() =>
         {
@@ -42,6 +46,7 @@ public class TextBoxTests
             Assert.That(isCollapseButtonEnabled, Is.True);
             Assert.That(isExpandedMenuDisplayed, Is.True);
             Assert.That(isCollapsedMenuDisplayed, Is.False);
+            Assert.That(isTheDescriptionOfSelectedItemsIsPresent, Is.True);
         });
     }
     
