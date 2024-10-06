@@ -24,25 +24,33 @@ public class TextBoxTests : IDisposable
         var checkBoxPage = elementsPage.OpenCheckBoxPage();
         var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
         
-        var IsExpandButtonEnabled = checkBoxPage.CheckExpandButton();
+        var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
         var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
 
         checkBoxPage.MarkHomeCheckbox();
+        var isHomeCheckBoxMarked = checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
+        var isDocumentsCheckBoxMarked = checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
         var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
+        var isTheTextOfTheDescriptionDisplayed = checkBoxPage.CheckTheTextOfTheDescription();
+        checkBoxPage.UnMarkHomeCheckbox();
 
         
-        var IsCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
+        var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
         var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
         
         Assert.Equal("DEMOQA", title);
         Assert.True(checkBoxPageTitle);
-        Assert.True(IsExpandButtonEnabled);
-        Assert.True(IsCollapseButtonEnabled);
+        Assert.True(isExpandButtonEnabled);
+        Assert.True(isCollapseButtonEnabled);
         Assert.True(isExpandedMenuDisplayed);
-        Assert.False(isCollapsedMenuDisplayed);
+        Assert.True(isHomeCheckBoxMarked);
+        Assert.True(isDocumentsCheckBoxMarked);
         Assert.True(isTheDescriptionOfSelectedItemsIsPresent);
+        Assert.True(isTheTextOfTheDescriptionDisplayed);
+        Assert.True(isCollapsedMenuDisplayed);
+        
     }
     public void Dispose()
     {
