@@ -63,4 +63,10 @@ public class CheckBoxPage : BasePage
         var element = CollapseButton;
         return element.Displayed && element.Enabled;
     }
+    
+    public bool CheckCollapsedMenuByCommandsCheckBox()
+    {
+        var element = CommandsCheckBox;
+        return element.Displayed!;
+    }
 }

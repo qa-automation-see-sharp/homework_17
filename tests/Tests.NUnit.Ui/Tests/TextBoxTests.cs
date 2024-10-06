@@ -28,10 +28,11 @@ public class TextBoxTests
         
         var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
-        var isExpandedManuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
+        var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
         
         var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
+        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByCommandsCheckBox();
         
         Assert.Multiple(() =>
         {
@@ -39,7 +40,8 @@ public class TextBoxTests
             Assert.That(checkBoxPageTitle, Is.True);
             Assert.That(isExpandButtonEnabled, Is.True);
             Assert.That(isCollapseButtonEnabled, Is.True);
-            Assert.That(isExpandedManuDisplayed, Is.True);
+            Assert.That(isExpandedMenuDisplayed, Is.True);
+            Assert.That(isCollapsedMenuDisplayed, Is.True);
         });
     }
     
