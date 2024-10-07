@@ -5,7 +5,7 @@ using static Test.Utils.Swd.WebDriver.BrowserNames;
 namespace Tests.NUnit.Ui.Tests;
 
 [TestFixture]
-public class TextBoxTests
+public class CheckBoxTests
 {
     private MainPage _mainPage;
 
