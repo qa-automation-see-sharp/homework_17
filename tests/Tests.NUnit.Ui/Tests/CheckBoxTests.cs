@@ -67,15 +67,32 @@ namespace Tests.NUnit.Ui.Tests
             Assert.That(text, Does.Contain("\nhome\ndesktop\nnotes\ncommands\ndocuments\nworkspace\nreact\nangular\nveu\noffice\npublic\nprivate\nclassified\ngeneral\ndownloads\nwordFile\nexcelFile"));
         }
 
-        public void CheckedOffice(){
+        [Test]
+        public void CheckedAFewItems(){
             _mainPage.Open();
             var elementsPage = _mainPage.ClickOnElements();
             var checkBoxPage = elementsPage.ClickOnCheckBox();
-            //checkBoxPage.
-        }
+            checkBoxPage.CheckItemByName("Notes");
+            checkBoxPage.CheckItemByName("Angular");
+            checkBoxPage.CheckItemByName("Veu");
+            checkBoxPage.CheckItemByName("General");
+            var text = checkBoxPage.GetResultText();
+            var homeHalfCheck = checkBoxPage.IsNodeHalfCheck("Home");
+            var desktopHalfCheck = checkBoxPage.IsNodeHalfCheck("Desktop");
+            var workSpaceHalfCheck = checkBoxPage.IsNodeHalfCheck("WorkSpace");
+            var documentsHalfCheck = checkBoxPage.IsNodeHalfCheck("Documents");
+            var generalChecked = checkBoxPage.IsNodeChecked("General");
 
-        public void test2(){
 
+            Assert.Multiple(() =>
+                {
+                    Assert.That(text, Does.Contain("\nnotes\nangular\nveu\ngeneral"));
+                    Assert.True(homeHalfCheck);
+                    Assert.True(desktopHalfCheck);
+                    Assert.True(workSpaceHalfCheck);
+                    Assert.True(documentsHalfCheck);
+                    Assert.True(generalChecked);
+                });
         }
 
         [TearDown]

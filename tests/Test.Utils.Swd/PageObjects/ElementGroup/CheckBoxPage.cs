@@ -1,5 +1,8 @@
 using System;
+using System.Formats.Asn1;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V127.Browser;
+using OpenQA.Selenium.Interactions;
 using Test.Utils.Swd.WebElements;
 
 namespace Test.Utils.Swd.PageObjects.ElementGroup;
@@ -14,13 +17,12 @@ public class CheckBoxPage : BasePage
     private By CheckBoxTitle => By.CssSelector("h1.text-center");
     private By ExpandAllButton => By.CssSelector("button.rct-option.rct-option-expand-all");
     private By CollapseAllButton => By.CssSelector("button.rct-option.rct-option-collapse-all");
-    private By RctTitle = By.ClassName(".rct-title");
-    private By RctCollapseButton = By.ClassName(".rct-collapse.rct-collapse-btn");
+    private By NodeName(string name) => By.XPath($"//label[starts-with(@for, 'tree-node-{name}')]");
     private By RctCheckBox = By.XPath("//*[@class='rct-icon rct-icon-uncheck' or @class='rct-icon rct-icon-check' or @class='rct-icon rct-icon-half-check']");
     private By Result = By.Id("result");
-   // private By UnCheck = By.ClassName(".rct-icon.rct-icon-uncheck");
-    //private By CheckBox= By.ClassName(".rct-icon.rct-icon-check");
-    //private By HalfCheckBox = By.ClassName(".rct-icon.rct-icon-half-check");
+    private By UnCheck = By.XPath("//*[contains(@class,'-uncheck')]");
+    private By CheckBox= By.XPath("//*[contains(@class,'icon-check')]");
+    private By HalfCheckBox = By.XPath("//*[contains(@class,'half-check')]");
 
     public string ResultText()
     {
@@ -55,8 +57,35 @@ public class CheckBoxPage : BasePage
         return Driver.FindElement(Result).Text;
     }
 
+    public void CheckItemByName(string name){
+        var count = Driver.FindElements(RctCheckBox).Count;
+        if(count == 1){
+        ExpandAllClick();
+        }
+        var ele = Driver.FindElement(NodeName(name.ToLower()));
+        new Actions(Driver)
+        .ScrollByAmount(0, ele.Location.Y/5)
+        .Perform();
+        ele.Click();
+    }
+
     public bool IsDisplayResult(){
         return Driver.FindElement(Result).Displayed;
+    }
+
+    public bool IsNodeHalfCheck(string nameNode){
+        return Driver.FindElement(NodeName(nameNode.ToLower())).FindElement(HalfCheckBox).Displayed 
+                && Driver.FindElement(NodeName(nameNode.ToLower())).FindElement(HalfCheckBox).Enabled;
+    }
+
+    public bool IsNodeChecked(string nameNode){
+        return Driver.FindElement(NodeName(nameNode.ToLower())).FindElement(CheckBox).Displayed 
+                && Driver.FindElement(NodeName(nameNode.ToLower())).FindElement(CheckBox).Enabled;
+    }
+
+    public bool IsNodeUncheck(string nameNode){
+        return Driver.FindElement(NodeName(nameNode.ToLower())).FindElement(UnCheck).Displayed 
+                && Driver.FindElement(NodeName(nameNode.ToLower())).FindElement(UnCheck).Enabled;
     }
 
 }
