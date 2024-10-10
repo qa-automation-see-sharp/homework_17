@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using Test.Utils.Swd.WebDriver;
 using Test.Utils.Swd.WebElements;
 using WebElement = Test.Utils.Swd.WebElements.WebElement;
 
@@ -15,7 +14,7 @@ public class MainPage : BasePage
 
     public ElementsPage ClickOnElements()
     {
-        int deltaY = Elements.Location.Y;
+        var deltaY = Elements.Location.Y;
         new Actions(Driver)
             .ScrollByAmount(0, deltaY)
             .Perform();

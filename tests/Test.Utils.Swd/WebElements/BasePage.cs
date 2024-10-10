@@ -14,9 +14,15 @@ public abstract class BasePage
         Driver = CreateWebDriver(name, args);
     }
 
-    public string GetPageTitle() => Wait(() => Driver!.Title, title => title is null);
+    public string GetPageTitle()
+    {
+        return Wait(() => Driver!.Title, title => title is null);
+    }
 
-    public string GetPageUrl() => Wait(() => Driver!.Url, url => url is null);
+    public string GetPageUrl()
+    {
+        return Wait(() => Driver!.Url, url => url is null);
+    }
 
     public void NavigateTo(string url)
     {

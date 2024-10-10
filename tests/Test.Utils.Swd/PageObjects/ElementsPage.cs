@@ -7,6 +7,11 @@ namespace Test.Utils.Swd.PageObjects;
 
 public class ElementsPage : BasePage
 {
+    public ElementsPage(IWebDriver driver)
+    {
+        Driver = driver;
+    }
+
     private WebElement TextBox
         => new(By.XPath("//span[contains(text(),\"Text Box\")]"), Driver!);
 
@@ -14,12 +19,7 @@ public class ElementsPage : BasePage
         => new(By.XPath("//span[contains(text(),\"Check Box\")]"), Driver!);
 
     private By Accordion => By.XPath("//div[@class=\"accordion\"]");
-    
-    public ElementsPage(IWebDriver driver)
-    {
-        Driver = driver;
-    }
-    
+
     public bool CheckAccordion()
     {
         return Driver.FindElement(Accordion).Displayed;

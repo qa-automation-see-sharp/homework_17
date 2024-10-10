@@ -1,4 +1,3 @@
-using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using Test.Utils.Swd.WebElements;
@@ -6,7 +5,12 @@ using Test.Utils.Swd.WebElements;
 namespace Test.Utils.Swd.PageObjects.ElementGroup;
 
 public class TextBoxPage : BasePage
-{ 
+{
+    public TextBoxPage(IWebDriver driver)
+    {
+        Driver = driver;
+    }
+
     private By TextBoxTitle => By.XPath("//h1[contains(text(),\"Text Box\")]");
     private By TextBoxForm => By.Id("userForm");
     private By FullNameLable => By.Id("userName-label");
@@ -23,11 +27,6 @@ public class TextBoxPage : BasePage
     private By OutPutCurrentAddress => By.CssSelector("p#currentAddress");
     private By OutPutPrermanentAddress => By.CssSelector("p#permanentAddress");
 
-    public TextBoxPage(IWebDriver driver)
-    {
-        Driver = driver;
-    }
-
     public bool CheckTextBoxTitle()
     {
         var element = Driver.FindElement(TextBoxTitle);
@@ -40,7 +39,25 @@ public class TextBoxPage : BasePage
         return element.Displayed && element.Enabled;
     }
 
+    public TextBoxPage SubmitClick()
+    {
+        var submit = Driver.FindElement(SubmitButton);
+        var deltaY = submit.Location.Y;
+        new Actions(Driver)
+            .ScrollByAmount(0, deltaY)
+            .Perform();
+        submit.Click();
+        return this;
+    }
+
+    public void BrowserQuit()
+    {
+        Driver.Close();
+        Driver.Quit();
+    }
+
     #region Enter text to fields
+
     public TextBoxPage EnterCurrentAddress(string currentAddress)
     {
         Driver.FindElement(CurrentAddressInput).SendKeys(currentAddress);
@@ -68,8 +85,11 @@ public class TextBoxPage : BasePage
 
         return this;
     }
+
     #endregion
+
     #region Get Lables and OutPut
+
     public string GetFullNameLabelText()
     {
         return Driver.FindElement(FullNameLable).Text;
@@ -90,7 +110,7 @@ public class TextBoxPage : BasePage
         return Driver.FindElement(PermanentAddressLable).Text;
     }
 
-     public string GetOutPutName()
+    public string GetOutPutName()
     {
         return Driver.FindElement(OutPutName).Text;
     }
@@ -109,22 +129,6 @@ public class TextBoxPage : BasePage
     {
         return Driver.FindElement(OutPutPrermanentAddress).Text;
     }
+
     #endregion
-
-    public TextBoxPage SubmitClick()
-    {
-        var submit = Driver.FindElement(SubmitButton);
-        int deltaY = submit.Location.Y;
-        new Actions(Driver)
-            .ScrollByAmount(0, deltaY)
-            .Perform();
-        submit.Click();
-        return this;
-    }
-
-    public void BrowserQuit()
-    {
-        Driver.Close();
-        Driver.Quit();
-    }
 }

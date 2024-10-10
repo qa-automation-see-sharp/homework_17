@@ -6,9 +6,16 @@ namespace Test.Utils.Swd.WebElements;
 
 public class WebElement
 {
-    private readonly IWebDriver _driver;
     private readonly By _by;
+    private readonly IWebDriver _driver;
     private IWebElement _element;
+
+
+    public WebElement(By by, IWebDriver driver)
+    {
+        _driver = driver;
+        _by = by;
+    }
 
     public string TagName => FindElement().TagName;
     public string Text => FindElement().Text;
@@ -17,13 +24,6 @@ public class WebElement
     public bool Displayed => FindElement().Displayed;
     public Point Location => FindElement().Location;
     public Size Size => FindElement().Size;
-
-
-    public WebElement(By by, IWebDriver driver)
-    {
-        _driver = driver;
-        _by = by;
-    }
 
     private IWebElement FindElement()
     {
@@ -45,7 +45,7 @@ public class WebElement
 
     public void Submit()
     {
-        Wait(()=> FindElement().Submit());
+        Wait(() => FindElement().Submit());
     }
 
     public void Click()
@@ -63,14 +63,14 @@ public class WebElement
     public string GetDomAttribute(string attributeName)
     {
         return Wait(
-            () => FindElement().GetDomAttribute(attributeName), 
+            () => FindElement().GetDomAttribute(attributeName),
             attr => attr is not null);
     }
 
     public string GetDomProperty(string propertyName)
     {
         return Wait(
-            () => FindElement().GetDomProperty(propertyName), 
+            () => FindElement().GetDomProperty(propertyName),
             prop => prop is not null);
     }
 
