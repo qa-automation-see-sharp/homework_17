@@ -6,10 +6,17 @@ namespace Test.Utils.Swd.WebElements;
 
 public class WebElement
 {
-    private readonly IWebDriver _driver;
     private readonly By _by;
+    private readonly IWebDriver _driver;
     private IWebElement _element;
     private List<IWebElement> _elements;
+
+
+    public WebElement(By by, IWebDriver driver)
+    {
+        _driver = driver;
+        _by = by;
+    }
 
     public string TagName => FindElement().TagName;
     public string Text => FindElement().Text;
@@ -18,13 +25,6 @@ public class WebElement
     public bool Displayed => FindElement().Displayed;
     public Point Location => FindElement().Location;
     public Size Size => FindElement().Size;
-
-
-    public WebElement(By by, IWebDriver driver)
-    {
-        _driver = driver;
-        _by = by;
-    }
 
     public IWebElement FindElement()
     {

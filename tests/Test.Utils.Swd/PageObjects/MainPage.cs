@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using Test.Utils.Swd.WebDriver;
 using Test.Utils.Swd.WebElements;
 using WebElement = Test.Utils.Swd.WebElements.WebElement;
 
@@ -13,21 +12,21 @@ public class MainPage : BasePage
 
     private WebElement Elements
         => new(By.XPath("//div[@class=\"card mt-4 top-card\"]/div/div/h5[contains(text(),\"Elements\")]"), Driver!);
-    
+
     public ElementsPage ClickOnElements()
     {
         Elements.Click();
         return new ElementsPage(Driver!);
     }
-    
+
     public ElementsPage OpenElementsPage()
     {
-        Actions actions = new Actions(Driver);
+        var actions = new Actions(Driver);
         actions.SendKeys(Keys.PageDown).Perform();
         Elements.Click();
-        return new(Driver!);
+        return new ElementsPage(Driver!);
     }
-    
+
     public void Close()
     {
         Driver?.Quit();

@@ -1,17 +1,21 @@
-using OpenQA.Selenium;
 using Test.Utils.Swd.PageObjects;
-using Xunit;
 using static Test.Utils.Swd.WebDriver.BrowserNames;
 
 namespace Tests.XUnit.Ui.Tests;
 
 public class TextBoxTests : IDisposable
 {
-    private MainPage _mainPage;
+    private readonly MainPage _mainPage;
+
     public TextBoxTests()
     {
         _mainPage = new MainPage();
         _mainPage.OpenWith(Chrome, "--start-maximized");
+    }
+
+    public void Dispose()
+    {
+        _mainPage.Close();
     }
 
     [Fact]
@@ -19,11 +23,11 @@ public class TextBoxTests : IDisposable
     {
         _mainPage.Open();
         var title = _mainPage.GetPageTitle();
-        
+
         var elementsPage = _mainPage.OpenElementsPage();
         var checkBoxPage = elementsPage.OpenCheckBoxPage();
         var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
-        
+
         var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
         var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
@@ -35,11 +39,11 @@ public class TextBoxTests : IDisposable
         var isTheTextOfTheDescriptionDisplayed = checkBoxPage.CheckTheTextOfTheDescription();
         checkBoxPage.UnMarkHomeCheckbox();
 
-        
+
         var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
         var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
-        
+
         Assert.Equal("DEMOQA", title);
         Assert.True(checkBoxPageTitle);
         Assert.True(isExpandButtonEnabled);
@@ -50,10 +54,5 @@ public class TextBoxTests : IDisposable
         Assert.True(isTheDescriptionOfSelectedItemsIsPresent);
         Assert.True(isTheTextOfTheDescriptionDisplayed);
         Assert.True(isCollapsedMenuDisplayed);
-        
-    }
-    public void Dispose()
-    {
-        _mainPage.Close();
     }
 }

@@ -13,9 +13,10 @@ public class CheckBox(By by, IWebDriver driver) : WebElement(by, driver)
             Click();
         }
     }
-    
+
     public void UnMark()
     {
+        //TODO Marked return false
         if (Marked)
         {
             Click();
