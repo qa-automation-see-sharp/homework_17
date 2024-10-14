@@ -28,7 +28,22 @@ public class TextBoxTests
             Assert.That(title, Is.EqualTo("DEMOQA"));
         });
     }
-    
+
+    [Test]
+    public void CheckboxPageTest()
+    {
+        _mainPage.Open();
+        var title = _mainPage.GetPageTitle();
+
+        _mainPage.ClickOnElements();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(title, Is.EqualTo("DEMOQA"));
+        });
+    }
+
+
     [OneTimeTearDown]
     public void TearDown()
     {
