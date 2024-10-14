@@ -4,7 +4,7 @@ namespace Test.Utils.Swd.WebElements;
 
 public class CheckBox(By by, IWebDriver driver) : WebElement(by, driver)
 {
-    public bool Marked => FindElement().Selected;
+    public bool Marked => Selected;
 
     public void Mark()
     {

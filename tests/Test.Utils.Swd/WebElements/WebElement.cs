@@ -28,17 +28,9 @@ public class WebElement
 
     public IWebElement FindElement()
     {
-        try
-        {
-            _element = Wait(
-                () => _driver.FindElement(_by),
-                element => element is null or { Displayed: false } or { Enabled: false });
-        }
-        catch
-        {
-            _element = null;
-        }
-
+        _element = Wait(
+            () => _driver.FindElement(_by),
+            element => element is null or { Displayed: false } or { Enabled: false });
         return _element;
     }
 

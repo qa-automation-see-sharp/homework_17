@@ -11,6 +11,7 @@ public class CheckBoxTests
     {
         _mainPage = new MainPage();
         _mainPage.OpenWith(Chrome, "--start-maximized");
+        _mainPage.Open();
     }
 
     [OneTimeTearDown]
@@ -21,10 +22,10 @@ public class CheckBoxTests
 
     private MainPage _mainPage;
 
+    //TODO: divide into several tests
     [Test]
     public void FirstTest()
     {
-        _mainPage.Open();
         var title = _mainPage.GetPageTitle();
 
         var elementsPage = _mainPage.OpenElementsPage();
