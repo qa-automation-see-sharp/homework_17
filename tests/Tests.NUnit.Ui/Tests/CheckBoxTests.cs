@@ -23,14 +23,30 @@ public class CheckBoxTests
     private MainPage _mainPage;
 
     //TODO: divide into several tests
-    [Test]
-    public void FirstTest()
+    [Test, Order(1)]
+    [Description("This test checks if the user has landed to the page with the correct title")]
+    public void GetMainPageTitleTest()
     {
         var title = _mainPage.GetPageTitle();
+        
+        Assert.That(title, Is.EqualTo("DEMOQA"));
+    }
 
-        var elementsPage = _mainPage.OpenElementsPage();
-        var checkBoxPage = elementsPage.OpenCheckBoxPage();
-        var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
+    [Test, Order(2)]
+    [Description("This test checks if the user has landed to the page with the correct title")]
+    public void OpenCheckboxPageTest()
+    {
+            var elementsPage = _mainPage.OpenElementsPage();
+            var checkBoxPage = elementsPage.OpenCheckBoxPage();
+            var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
+           
+            Assert.That(checkBoxPageTitle, Is.True);
+    }
+    
+    
+    [Test, Order(3)]
+    public void FirstTest()
+    {
 
         var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
@@ -51,7 +67,7 @@ public class CheckBoxTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(title, Is.EqualTo("DEMOQA"));
+           
             Assert.That(checkBoxPageTitle, Is.True);
             Assert.That(isExpandButtonEnabled, Is.True);
             Assert.That(isCollapseButtonEnabled, Is.True);
