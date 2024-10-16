@@ -1,3 +1,4 @@
+using OpenQA.Selenium;
 using Test.Utils.Swd.PageObjects;
 using static Test.Utils.Swd.WebDriver.BrowserNames;
 
@@ -21,8 +22,8 @@ public class CheckBoxTests
     }
 
     private MainPage _mainPage;
+    private CheckBoxPage _checkBoxPage;
 
-    //TODO: divide into several tests
     [Test, Order(1)]
     [Description("This test checks if the user has landed to the page with the correct title")]
     public void GetMainPageTitleTest()
@@ -37,45 +38,69 @@ public class CheckBoxTests
     public void OpenCheckboxPageTest()
     {
             var elementsPage = _mainPage.OpenElementsPage();
-            var checkBoxPage = elementsPage.OpenCheckBoxPage();
-            var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
+            _checkBoxPage = elementsPage.OpenCheckBoxPage();
+            var checkBoxPageTitle = _checkBoxPage.CheckCheckBoxPageTitle();
            
             Assert.That(checkBoxPageTitle, Is.True);
     }
-    
-    
+
     [Test, Order(3)]
-    public void FirstTest()
+    [Description("This test checks if the expand menu can be opened")]
+    public void ExpandMenuTest()
     {
+        var isExpandButtonEnabled = _checkBoxPage.CheckExpandButton();
+        _checkBoxPage.ExpandMenu();
+        var isExpandedMenuDisplayed = _checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(isExpandButtonEnabled, Is.True);
+            Assert.That(isExpandedMenuDisplayed, Is.True);
+        });
+    }
 
-        var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
-        checkBoxPage.ExpandMenu();
-        var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
+    [Test, Order(4)]
+    [Description("This test checks if the home checkbox is marked after clicking it")]
+    public void MarkHomeCheckBoxTest()
+    {
+        _checkBoxPage.MarkHomeCheckbox();
+        var isHomeCheckBoxMarked = _checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
+        
+        Assert.That(isHomeCheckBoxMarked, Is.True);
+    }
 
-        checkBoxPage.MarkHomeCheckbox();
-        var isHomeCheckBoxMarked = checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
-        var isDocumentsCheckBoxMarked = checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
-        var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
-        var isTheTextOfTheDescriptionDisplayed = checkBoxPage.CheckTheTextOfTheDescription();
-        checkBoxPage.UnMarkHomeCheckbox();
+    [Test, Order(5)]
+    [Description("This test checks if the other checkboxes are marked and the description is present")]
 
-
-        var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
-        checkBoxPage.CollapseMenu();
-        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
+    public void CheckMarkedElementsAndDescriptionTest()
+    {
+        var isDocumentsCheckBoxMarked = _checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
+        var isTheDescriptionOfSelectedItemsIsPresent = _checkBoxPage.CheckTheDescriptionOfSelectedItems();
+        var isTheTextOfTheDescriptionDisplayed = _checkBoxPage.CheckTheTextOfTheDescription();
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(isDocumentsCheckBoxMarked, Is.True);
+            Assert.That(isTheDescriptionOfSelectedItemsIsPresent, Is.True);
+            Assert.That(isTheTextOfTheDescriptionDisplayed, Is.True);
+            
+        });
+    }
+    
+    [Test, Order(6)]
+    [Description("This test checks if the checkboxes are unmarked and the menu is collapsed")]
+    public void UnmarkCheckboxAndCloseTheMenuTest()
+    {
+        _checkBoxPage.UnMarkHomeCheckbox();
+        
+        var isCollapseButtonEnabled = _checkBoxPage.CheckCollapseButton();
+        _checkBoxPage.CollapseMenu();
+        var isCollapsedMenuDisplayed = _checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
 
 
         Assert.Multiple(() =>
         {
-           
-            Assert.That(checkBoxPageTitle, Is.True);
-            Assert.That(isExpandButtonEnabled, Is.True);
             Assert.That(isCollapseButtonEnabled, Is.True);
-            Assert.That(isExpandedMenuDisplayed, Is.True);
-            Assert.That(isHomeCheckBoxMarked, Is.True);
-            Assert.That(isDocumentsCheckBoxMarked, Is.True);
-            Assert.That(isTheDescriptionOfSelectedItemsIsPresent, Is.True);
-            Assert.That(isTheTextOfTheDescriptionDisplayed, Is.True);
             Assert.That(isCollapsedMenuDisplayed, Is.True);
         });
     }
