@@ -3,14 +3,17 @@ using static Test.Utils.Swd.WebDriver.BrowserNames;
 
 namespace Tests.XUnit.Ui.Tests;
 
-public class TextBoxTests : IDisposable
+public class CheckBoxTests : IDisposable
 {
-    private readonly MainPage _mainPage;
+    private MainPage _mainPage;
+    private CheckBoxPage _checkBoxPage;
 
-    public TextBoxTests()
+    
+    public CheckBoxTests()
     {
         _mainPage = new MainPage();
         _mainPage.OpenWith(Chrome, "--start-maximized");
+        _mainPage.Open();
     }
 
     public void Dispose()
@@ -19,40 +22,63 @@ public class TextBoxTests : IDisposable
     }
 
     [Fact]
-    public void FirstTest()
+    public void GetMainPageTitleTest()
     {
-        _mainPage.Open();
         var title = _mainPage.GetPageTitle();
-
-        var elementsPage = _mainPage.OpenElementsPage();
-        var checkBoxPage = elementsPage.OpenCheckBoxPage();
-        var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
-
-        var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
-        checkBoxPage.ExpandMenu();
-        var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
-
-        checkBoxPage.MarkHomeCheckbox();
-        var isHomeCheckBoxMarked = checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
-        var isDocumentsCheckBoxMarked = checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
-        var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
-        var isTheTextOfTheDescriptionDisplayed = checkBoxPage.CheckTheTextOfTheDescription();
-        checkBoxPage.UnMarkHomeCheckbox();
-
-
-        var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
-        checkBoxPage.CollapseMenu();
-        var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
-
         Assert.Equal("DEMOQA", title);
+    }
+
+    [Fact]
+    public void OpenCheckboxPageTest()
+    {
+        var elementsPage = _mainPage.OpenElementsPage();
+        _checkBoxPage = elementsPage.OpenCheckBoxPage();
+        var checkBoxPageTitle = _checkBoxPage.CheckCheckBoxPageTitle();
         Assert.True(checkBoxPageTitle);
+    }
+
+    [Fact]
+    public void ExpandMenuTest()
+    {
+        var isExpandButtonEnabled = _checkBoxPage.CheckExpandButton();
+        _checkBoxPage.ExpandMenu();
+        var isExpandedMenuDisplayed = _checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
+        
         Assert.True(isExpandButtonEnabled);
-        Assert.True(isCollapseButtonEnabled);
         Assert.True(isExpandedMenuDisplayed);
+    }
+
+    [Fact]
+    public void MarkHomeCheckBoxTest()
+    {
+        _checkBoxPage.MarkHomeCheckbox();
+        var isHomeCheckBoxMarked = _checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
+        
         Assert.True(isHomeCheckBoxMarked);
+    }
+
+    [Fact]
+    public void CheckMarkedElementsAndDescriptionTest()
+    {
+        var isDocumentsCheckBoxMarked = _checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
+        var isTheDescriptionOfSelectedItemsIsPresent = _checkBoxPage.CheckTheDescriptionOfSelectedItems();
+        var isTheTextOfTheDescriptionDisplayed = _checkBoxPage.CheckTheTextOfTheDescription();
+        
         Assert.True(isDocumentsCheckBoxMarked);
         Assert.True(isTheDescriptionOfSelectedItemsIsPresent);
         Assert.True(isTheTextOfTheDescriptionDisplayed);
+    }
+
+    [Fact]
+    public void UnmarkCheckboxAndCloseTheMenuTest()
+    {
+        _checkBoxPage.UnMarkHomeCheckbox();
+
+        var isCollapseButtonEnabled = _checkBoxPage.CheckCollapseButton();
+        _checkBoxPage.CollapseMenu();
+        var isCollapsedMenuDisplayed = _checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
+
+        Assert.True(isCollapseButtonEnabled);
         Assert.True(isCollapsedMenuDisplayed);
     }
 }

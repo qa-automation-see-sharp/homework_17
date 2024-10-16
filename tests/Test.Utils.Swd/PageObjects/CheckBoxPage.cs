@@ -106,7 +106,7 @@ public class CheckBoxPage : BasePage
     public void MarkHomeCheckbox()
     {
         HomeCheckBox.Mark();
-        Thread.Sleep(3000); //TODO: remove this sleep %)
+        //Thread.Sleep(3000); 
     }
 
     public bool CheckTheDescriptionOfSelectedItems()
@@ -136,6 +136,6 @@ public class CheckBoxPage : BasePage
     public void UnMarkHomeCheckbox()
     {
         HomeCheckBox.UnMark();
-        Thread.Sleep(5000); //TODO: remove this sleep %)
+       // Thread.Sleep(5000); 
     }
 }
