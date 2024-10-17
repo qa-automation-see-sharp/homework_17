@@ -4,19 +4,16 @@ using static Test.Utils.Swd.WebDriver.BrowserNames;
 namespace Tests.XUnit.Ui.Tests;
 
 public class CheckBoxTests : IAsyncLifetime
-{ 
-    private MainPage _mainPage; 
-    public async Task DisposeAsync()
-    {
-        _mainPage.Close();
-    }
+{
+    private MainPage _mainPage;
+
     public async Task InitializeAsync()
     {
         _mainPage = new MainPage();
         _mainPage.OpenWith(Chrome, "--start-maximized");
         _mainPage.Open();
     }
-    
+
     [Fact]
     public void GetMainPageTitleTest()
     {
@@ -28,27 +25,27 @@ public class CheckBoxTests : IAsyncLifetime
     public void CheckboxPageTests()
     {
         var elementsPage = _mainPage.OpenElementsPage();
-        
+
         var checkBoxPage = elementsPage.OpenCheckBoxPage();
         var checkBoxPageTitle = checkBoxPage.CheckCheckBoxPageTitle();
-        
+
         var isExpandButtonEnabled = checkBoxPage.CheckExpandButton();
         checkBoxPage.ExpandMenu();
         var isExpandedMenuDisplayed = checkBoxPage.CheckExpandedMenuByCommandsCheckBox();
-        
+
         checkBoxPage.MarkHomeCheckbox();
         var isHomeCheckBoxMarked = checkBoxPage.VerifyTheHomeCheckBoxIsMarked();
         var isDocumentsCheckBoxMarked = checkBoxPage.VerifyTheDocumentsCheckBoxIsMarked();
-        
+
         var isTheDescriptionOfSelectedItemsIsPresent = checkBoxPage.CheckTheDescriptionOfSelectedItems();
         var isTheTextOfTheDescriptionDisplayed = checkBoxPage.CheckTheTextOfTheDescription();
-        
+
         checkBoxPage.UnMarkHomeCheckbox();
 
         var isCollapseButtonEnabled = checkBoxPage.CheckCollapseButton();
         checkBoxPage.CollapseMenu();
         var isCollapsedMenuDisplayed = checkBoxPage.CheckCollapsedMenuByTheHomeFolderIcon();
-        
+
         Assert.True(checkBoxPageTitle);
         Assert.True(isExpandButtonEnabled);
         Assert.True(isExpandedMenuDisplayed);
@@ -58,5 +55,10 @@ public class CheckBoxTests : IAsyncLifetime
         Assert.True(isTheTextOfTheDescriptionDisplayed);
         Assert.True(isCollapseButtonEnabled);
         Assert.True(isCollapsedMenuDisplayed);
+    }
+
+    public async Task DisposeAsync()
+    {
+        _mainPage.Close();
     }
 }
