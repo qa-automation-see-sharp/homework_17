@@ -7,7 +7,7 @@ namespace Test.Utils.Swd.WebElements;
 
 public abstract class BasePage
 {
-    protected IWebDriver? Driver;
+    public IWebDriver? Driver;
 
     public void OpenWith(BrowserNames name, params string[] args)
     {

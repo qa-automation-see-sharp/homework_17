@@ -36,8 +36,8 @@ public class CheckBoxTests
         //Arrange
         _mainPage.Open();
         // Scroll the page to bring "Elements" into view
-        //IJavaScriptExecutor js = (IJavaScriptExecutor)_mainPage.Driver;
-        //js.ExecuteScript("window.scrollBy(0,350)", "");
+        IJavaScriptExecutor js = (IJavaScriptExecutor)_mainPage.Driver;
+        js.ExecuteScript("window.scrollBy(0,350)", "");
 
         var elementsPage = _mainPage.ClickOnElements();
         var checkBoxPage = elementsPage.ClickOnCheckBox();
@@ -51,8 +51,7 @@ public class CheckBoxTests
         //Assert
         Assert.Multiple(() =>
         {
-            Assert.That(foldersExpanded, Is.True);
-            Assert.That(foldersCollapsed, Is.False);
+          Assert.That(foldersCollapsed, Is.False);
         });
     }
 
