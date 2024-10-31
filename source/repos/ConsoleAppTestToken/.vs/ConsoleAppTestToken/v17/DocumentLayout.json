@@ -1,0 +1,62 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\AntonPavliuchyk\\source\\repos\\ConsoleAppTestToken\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D8EBCB86-DAB5-4C5A-BC65-4902C22C60A1}|ConsoleAppTestToken\\ConsoleAppTestToken.csproj|c:\\users\\antonpavliuchyk\\source\\repos\\consoleapptesttoken\\consoleapptesttoken\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8EBCB86-DAB5-4C5A-BC65-4902C22C60A1}|ConsoleAppTestToken\\ConsoleAppTestToken.csproj|solutionrelative:consoleapptesttoken\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8EBCB86-DAB5-4C5A-BC65-4902C22C60A1}|ConsoleAppTestToken\\ConsoleAppTestToken.csproj|c:\\users\\antonpavliuchyk\\source\\repos\\consoleapptesttoken\\consoleapptesttoken\\consoleapptesttoken.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D8EBCB86-DAB5-4C5A-BC65-4902C22C60A1}|ConsoleAppTestToken\\ConsoleAppTestToken.csproj|solutionrelative:consoleapptesttoken\\consoleapptesttoken.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConsoleAppTestToken",
+              "DocumentMoniker": "C:\\Users\\AntonPavliuchyk\\source\\repos\\ConsoleAppTestToken\\ConsoleAppTestToken\\ConsoleAppTestToken.csproj",
+              "RelativeDocumentMoniker": "ConsoleAppTestToken\\ConsoleAppTestToken.csproj",
+              "ToolTip": "C:\\Users\\AntonPavliuchyk\\source\\repos\\ConsoleAppTestToken\\ConsoleAppTestToken\\ConsoleAppTestToken.csproj",
+              "RelativeToolTip": "ConsoleAppTestToken\\ConsoleAppTestToken.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-10T21:41:26.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\AntonPavliuchyk\\source\\repos\\ConsoleAppTestToken\\ConsoleAppTestToken\\Program.cs",
+              "RelativeDocumentMoniker": "ConsoleAppTestToken\\Program.cs",
+              "ToolTip": "C:\\Users\\AntonPavliuchyk\\source\\repos\\ConsoleAppTestToken\\ConsoleAppTestToken\\Program.cs",
+              "RelativeToolTip": "ConsoleAppTestToken\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T21:36:45.003Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
