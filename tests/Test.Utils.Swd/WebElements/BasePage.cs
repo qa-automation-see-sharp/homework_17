@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using System.Xml.Linq;
 using Test.Utils.Swd.WebDriver;
 using static Test.Utils.Swd.Helpers.WaitHelper;
 using static Test.Utils.Swd.WebDriver.WebDriverFactory;
@@ -8,7 +9,7 @@ namespace Test.Utils.Swd.WebElements;
 public abstract class BasePage
 {
     protected IWebDriver? Driver;
-
+   
     public void OpenWith(BrowserNames name, params string[] args)
     {
         Driver = CreateWebDriver(name, args);
