@@ -13,10 +13,19 @@ public class ElementsPage : BasePage
     private WebElement Accordion
         => new(By.XPath("//div[@class=\"accordion\"]"), Driver!);
 
+    private WebElement CheckBox
+        => new(By.XPath("//span[contains(text(),\"Check Box\")]"), Driver!);
+
     public TextBoxPage ClickOnTextBox()
     {
         TextBox.Click();
         return new TextBoxPage(Driver!);
+    }
+
+    public CheckBoxPage ClickOnCheckBox()
+    {
+        CheckBox.Click();
+        return new CheckBoxPage(Driver!);
     }
 
     public string GetCurrentUrl()
