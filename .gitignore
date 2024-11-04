@@ -71,6 +71,38 @@ _ReSharper*/
 # Click-Once directory
 publish/
 
+# Ignore system files
+/Application Data/
+/Cookies/
+/Local Settings/
+/My Documents/
+/NetHood/
+/PrintHood/
+/Recent/
+/SendTo/
+/Start Menu/
+/Templates/
+/3D Objects/
+/AppData/
+/Contacts/
+/Desktop/
+/Documents/
+/Downloads/
+/Favorites/
+/IntelGraphicsProfiles/
+/Links/
+/Music/
+/NTUSER.DAT*
+/OneDrive/
+/Pictures/
+/Saved Games/
+/Searches/
+/Tracing/
+/Videos/
+/bin/
+/obj/
+*.log
+
 # Publish Web Output
 *.Publish.xml
 *.pubxml
