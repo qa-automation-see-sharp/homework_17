@@ -5,7 +5,6 @@ using static Test.Utils.Swd.WebDriver.BrowserNames;
 
 namespace Tests.NUnit.Ui.Tests
 {
-
     public class CheckBoxTests
     {
         private MainPage _mainPage;
@@ -13,11 +12,12 @@ namespace Tests.NUnit.Ui.Tests
         private CheckBoxPage _checkBoxPage;
         private TextBoxPage _textBoxPage;
         private string _expectedPage = "https://demoqa.com/checkbox";
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             _mainPage = new MainPage();
-            _mainPage.OpenWith(Chrome, "--start-maximized");
+            _mainPage.OpenWith(Chrome, "--start-maximized", "--headless");
         }
 
         [SetUp]
@@ -37,17 +37,14 @@ namespace Tests.NUnit.Ui.Tests
         [Test]
         public void CheckIfCheckBoxPageOpened()
         {
-           
             string currentPageIs = _checkBoxPage.GetCurrentUrl();
 
-            Assert.Multiple(() =>
-            {
-                Assert.True(string.Equals(currentPageIs, _expectedPage, StringComparison.OrdinalIgnoreCase));
-            });
+            //Assert multiple is not needed whe you have only one assert
+            Assert.True(string.Equals(currentPageIs, _expectedPage, StringComparison.OrdinalIgnoreCase));
         }
 
         [Test]
-        public void CheckIfAllStructureExpandeWhenPressExpandeAllBtn()
+        public void CheckIfAllStructureExpandWhenPressExpandAllBtn()
         {
             _checkBoxPage.ClickOnExpandeAll();
 
@@ -62,17 +59,15 @@ namespace Tests.NUnit.Ui.Tests
         }
 
         [Test]
-        public void CheckIfAllStructureCollapseWhenPressCollapswAllBtn()
+        public void CheckIfAllStructureCollapseWhenPressCollapseAllBtn()
         {
             _checkBoxPage.ClickOnExpandeAll();
             _checkBoxPage.ClickOnCollapseAll();
 
             bool isAllStructureCollapse = _checkBoxPage.CheckIfAllStructureCollapse();
 
-            Assert.Multiple(() =>
-            {
-                Assert.True(isAllStructureCollapse);
-            });
+            //Assert multiple is not needed whe you have only one assert
+            Assert.True(isAllStructureCollapse);
         }
 
         [Test]
@@ -83,10 +78,8 @@ namespace Tests.NUnit.Ui.Tests
 
             bool isAllChecked = _checkBoxPage.CheckIfAllChecked();
 
-            Assert.Multiple(() =>
-            {
-                Assert.True(isAllChecked);
-            });
+            //Assert multiple is not needed whe you have only one assert
+            Assert.True(isAllChecked);
         }
 
         [Test]
@@ -114,10 +107,8 @@ namespace Tests.NUnit.Ui.Tests
 
             bool isAllUnChecked = _checkBoxPage.CheckIfAllUnchecked();
 
-            Assert.Multiple(() =>
-            {
-                Assert.True(isAllUnChecked);
-            });
+            //Assert multiple is not needed whe you have only one assert
+            Assert.True(isAllUnChecked);
         }
 
         [Test]
@@ -161,10 +152,8 @@ namespace Tests.NUnit.Ui.Tests
 
             bool isElementChecked = _checkBoxPage.CheckIfElementChecked(elementName);
 
-            Assert.Multiple(() =>
-            {
-                Assert.True(isElementChecked);
-            });
+            //Assert multiple is not needed whe you have only one assert
+            Assert.True(isElementChecked);
         }
 
         [Test]
@@ -184,7 +173,6 @@ namespace Tests.NUnit.Ui.Tests
         [TestCase("//span[@class='rct-title' and text() ='Downloads']", "downloads", "Downloads")]
         [TestCase("//span[@class='rct-title' and text() ='Word File.doc']", "wordFile", "Word File.doc")]
         [TestCase("//span[@class='rct-title' and text() ='Excel File.doc']", "excelFile", "Excel File.doc")]
-
         public void CheckIfResultPresentWhenElementChecked(string elementPath, string elementName, string elementTitle)
         {
             _checkBoxPage.ClickOnExpandeAll();
@@ -203,4 +191,3 @@ namespace Tests.NUnit.Ui.Tests
         }
     }
 }
-
